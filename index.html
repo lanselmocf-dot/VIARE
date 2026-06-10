@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VIARE - Plataforma de turismo e hotelaria. Faça login para acessar hospedagens, pacotes de viagem e ofertas exclusivas.">
+  <title>VIARE — Login</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">VIARE</div>
+      <h1 class="auth-title">Acesse sua conta</h1>
+
+      <form id="login-form" class="auth-form" novalidate>
+        <!-- E-mail -->
+        <div class="form-group">
+          <label class="form-label" for="login-email">E-mail</label>
+          <input 
+            type="email" 
+            id="login-email" 
+            class="form-input" 
+            placeholder="seu@email.com" 
+          >
+          <p id="login-email-error" class="form-error">Informe seu e-mail</p>
+        </div>
+
+        <!-- Senha -->
+        <div class="form-group">
+          <label class="form-label" for="login-senha">Senha</label>
+          <input 
+            type="password" 
+            id="login-senha" 
+            class="form-input" 
+            placeholder="••••••••" 
+          >
+          <p id="login-senha-error" class="form-error">Informe sua senha</p>
+        </div>
+
+        <!-- Esqueci minha senha -->
+        <div class="forgot-link">
+          <a href="#">Esqueci minha senha</a>
+        </div>
+
+        <!-- Botão Entrar -->
+        <button type="submit" class="btn btn-primary-full">Entrar</button>
+      </form>
+
+      <div class="auth-footer">
+        Ainda não possui conta? <a href="registro.html">Criar Cadastro</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

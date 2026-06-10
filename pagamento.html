@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Finalize sua compra na VIARE. Preencha seus dados e informações de pagamento para confirmar sua reserva.">
+  <title>VIARE — Pagamento</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- ====== HEADER ====== -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">VIARE</div>
+
+        <nav class="nav">
+          <a href="hospedagens.html" class="nav-link" id="nav-hospedagens">Hospedagens</a>
+          <a href="viagens.html" class="nav-link" id="nav-viagens">Viagens</a>
+          <a href="ofertas.html" class="nav-link" id="nav-ofertas">Ofertas</a>
+        </nav>
+
+        <div class="profile-wrapper">
+          <button class="profile-btn" id="profile-btn" aria-label="Menu do perfil">👤</button>
+          <div class="profile-dropdown" id="profile-dropdown">
+            <div class="dropdown-label">Olá, João da Silva</div>
+            <div class="dropdown-divider"></div>
+            <a href="reservas.html" class="dropdown-item">
+              Minhas Reservas
+              <span class="badge-count">3 reservas</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="index.html" class="dropdown-item danger">Sair</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ====== CONTEÚDO PRINCIPAL ====== -->
+    <main class="main-content">
+      <div class="payment-layout">
+
+        <!-- Coluna Esquerda: Formulário -->
+        <div class="payment-left">
+          <h1 class="payment-page-title">Finalizar Compra</h1>
+
+          <form id="payment-form">
+            <!-- Informações do Viajante -->
+            <div class="payment-section">
+              <h3 class="payment-section-title">Informações do Viajante</h3>
+              <div class="payment-form-group">
+                <label class="payment-label" for="pay-nome">Nome Completo</label>
+                <input type="text" id="pay-nome" class="payment-input" placeholder="Ex: João da Silva" required>
+              </div>
+              <div class="payment-form-group">
+                <label class="payment-label" for="pay-cpf">CPF</label>
+                <input type="text" id="pay-cpf" class="payment-input" placeholder="000.000.000-00" required>
+              </div>
+            </div>
+
+            <!-- Método de Pagamento -->
+            <div class="payment-section">
+              <h3 class="payment-section-title">Método de Pagamento</h3>
+              <div class="payment-form-group">
+                <label class="payment-label" for="pay-cartao">Número do Cartão de Crédito</label>
+                <input type="text" id="pay-cartao" class="payment-input" placeholder="0000 0000 0000 0000" required>
+              </div>
+              <div class="payment-row">
+                <div class="payment-form-group">
+                  <label class="payment-label" for="pay-validade">Validade</label>
+                  <input type="text" id="pay-validade" class="payment-input" placeholder="MM/AA" required>
+                </div>
+                <div class="payment-form-group">
+                  <label class="payment-label" for="pay-cvv">CVV</label>
+                  <input type="text" id="pay-cvv" class="payment-input" placeholder="123" maxlength="4" required>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Coluna Direita: Resumo -->
+        <div class="payment-right">
+          <div class="summary-card">
+            <h3 class="summary-title">Resumo do Pedido</h3>
+
+            <div id="summary-section">
+              <!-- Renderizado pelo JavaScript -->
+            </div>
+
+            <button type="submit" form="payment-form" class="btn btn-primary-full" style="margin-top: 1.5rem;">
+              Confirmar Pagamento
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <div class="logo" style="margin-bottom: 1rem;">VIARE</div>
+            <p class="footer-about-text">
+              Sua plataforma completa de turismo e hotelaria. Encontre as melhores hospedagens, 
+              pacotes de viagem e ofertas exclusivas para suas próximas aventuras.
+            </p>
+          </div>
+          <div>
+            <h4 class="footer-heading">Links Rápidos</h4>
+            <ul class="footer-links">
+              <li><a href="hospedagens.html" class="footer-link">Hospedagens</a></li>
+              <li><a href="viagens.html" class="footer-link">Pacotes de Viagem</a></li>
+              <li><a href="ofertas.html" class="footer-link">Ofertas e Promoções</a></li>
+              <li><a href="reservas.html" class="footer-link">Minhas Reservas</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Contato</h4>
+            <ul class="footer-links">
+              <li class="footer-contact-item">
+                <span class="icon">✉️</span>
+                <span>contato@viare.com.br</span>
+              </li>
+              <li class="footer-contact-item">
+                <span class="icon">📞</span>
+                <span>(11) 9999-8888</span>
+              </li>
+            </ul>
+            <div class="footer-socials">
+              <a href="#" class="social-link" aria-label="Instagram">📷</a>
+              <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copyright">© 2026 VIARE Tourism Platform. Todos os direitos reservados.</span>
+          <div class="footer-legal">
+            <a href="#">Termos de Uso</a>
+            <a href="#">Privacidade</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
