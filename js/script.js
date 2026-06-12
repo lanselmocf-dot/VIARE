@@ -1,18 +1,5 @@
-/* ============================================================
-   VIARE — JavaScript Principal
-   Arquivo único com toda a lógica do site
-   ============================================================ */
 
-// ============================================================
-// UTILIDADES
-// ============================================================
 
-/**
- * Mostra uma notificação toast na tela
- * @param {string} title - Título do toast
- * @param {string} description - Descrição do toast
- * @param {'success'|'error'} type - Tipo do toast
- */
 function showToast(title, description, type) {
   var container = document.getElementById('toast-container');
   if (!container) {
@@ -36,7 +23,6 @@ function showToast(title, description, type) {
 
   container.appendChild(toast);
 
-  // Remover automaticamente após 3 segundos
   setTimeout(function() {
     toast.classList.add('hiding');
     setTimeout(function() {
@@ -47,27 +33,13 @@ function showToast(title, description, type) {
   }, 3000);
 }
 
-/**
- * Formata número para moeda brasileira
- * @param {number} value
- * @returns {string}
- */
 function formatCurrency(value) {
   return 'R$ ' + value.toFixed(2).replace('.', ',');
 }
 
-/**
- * Formata número com ponto de milhar
- * @param {number} value
- * @returns {string}
- */
 function formatNumber(value) {
   return value.toLocaleString('pt-BR');
 }
-
-// ============================================================
-// DROPDOWN DE PERFIL
-// ============================================================
 
 function initProfileDropdown() {
   var profileBtn = document.getElementById('profile-btn');
@@ -80,17 +52,12 @@ function initProfileDropdown() {
     dropdown.classList.toggle('open');
   });
 
-  // Fechar ao clicar fora
   document.addEventListener('click', function(e) {
     if (!dropdown.contains(e.target) && e.target !== profileBtn) {
       dropdown.classList.remove('open');
     }
   });
 }
-
-// ============================================================
-// LOGIN (index.html)
-// ============================================================
 
 function initLogin() {
   var form = document.getElementById('login-form');
@@ -101,7 +68,6 @@ function initLogin() {
   var emailError = document.getElementById('login-email-error');
   var senhaError = document.getElementById('login-senha-error');
 
-  // Limpar erros ao digitar
   emailInput.addEventListener('input', function() {
     emailError.classList.remove('show');
     emailInput.classList.remove('error');
@@ -144,10 +110,6 @@ function initLogin() {
   });
 }
 
-// ============================================================
-// REGISTRO (registro.html)
-// ============================================================
-
 function initRegistro() {
   var form = document.getElementById('registro-form');
   if (!form) return;
@@ -159,7 +121,6 @@ function initRegistro() {
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Verificar campos obrigatórios
     var inputs = form.querySelectorAll('input[required]');
     var temCampoVazio = false;
 
@@ -175,7 +136,6 @@ function initRegistro() {
       return;
     }
 
-    // Verificar senhas iguais
     if (senhaInput.value !== confirmarInput.value) {
       senhaError.classList.add('show');
       showToast('Senhas diferentes', 'A confirmação de senha deve ser igual à senha.', 'error');
@@ -190,7 +150,6 @@ function initRegistro() {
     }, 800);
   });
 
-  // Limpar erro ao digitar
   if (confirmarInput) {
     confirmarInput.addEventListener('input', function() {
       senhaError.classList.remove('show');
@@ -198,11 +157,6 @@ function initRegistro() {
   }
 }
 
-// ============================================================
-// HOSPEDAGENS (hospedagens.html)
-// ============================================================
-
-// Dados dos hotéis
 var hoteis = [
   { id: 1, name: 'Resort Mar de Prata', location: 'Porto de Galinhas, PE', stars: 5, price: 950, nota: 9.2, reviews: 1847 },
   { id: 2, name: 'Hotel Pousada das Montanhas', location: 'Gramado, RS', stars: 4, price: 420, nota: 8.5, reviews: 932 },
@@ -223,10 +177,9 @@ function initHospedagens() {
   var filtroAtual = 'todos';
   var termoBusca = '';
 
-  // ---- Renderizar hotéis ----
   function renderHoteis() {
     var filtrados = hoteis.filter(function(h) {
-      // Filtro por texto (Destino ou Nome do Hotel)
+      
       if (termoBusca !== '') {
         var textoHotel = (h.name + ' ' + h.location).toLowerCase();
         if (textoHotel.indexOf(termoBusca.toLowerCase()) === -1) {
@@ -234,7 +187,6 @@ function initHospedagens() {
         }
       }
 
-      // Filtro por preço
       if (filtroAtual === 'todos') return true;
       if (filtroAtual === 'ate300') return h.price <= 300;
       if (filtroAtual === '300a600') return h.price > 300 && h.price <= 600;
@@ -278,7 +230,6 @@ function initHospedagens() {
     grid.innerHTML = html;
   }
 
-  // ---- Buscar por Destino ----
   var searchBtn = document.querySelector('.search-btn');
   var searchDestino = document.getElementById('search-destino');
   
@@ -295,14 +246,12 @@ function initHospedagens() {
     });
   }
 
-  // Renderizar na inicialização
   renderHoteis();
 
-  // ---- Filtros de preço ----
   var filterBtns = document.querySelectorAll('.filter-btn');
   for (var i = 0; i < filterBtns.length; i++) {
     filterBtns[i].addEventListener('click', function() {
-      // Remover active de todos
+      
       for (var j = 0; j < filterBtns.length; j++) {
         filterBtns[j].classList.remove('active');
       }
@@ -312,7 +261,6 @@ function initHospedagens() {
     });
   }
 
-  // ---- Seletor de hóspedes ----
   var guestsTrigger = document.getElementById('guests-trigger');
   var guestsDropdown = document.getElementById('guests-dropdown');
   var chevron = document.getElementById('guests-chevron');
@@ -332,7 +280,6 @@ function initHospedagens() {
     });
   }
 
-  // Botões de incremento/decremento
   var adultosValue = document.getElementById('adultos-value');
   var criancasValue = document.getElementById('criancas-value');
   var guestsText = document.getElementById('guests-text');
@@ -345,7 +292,6 @@ function initHospedagens() {
     if (guestsText) guestsText.textContent = texto;
   }
 
-  // Adultos -
   var btnAdultoMinus = document.getElementById('adulto-minus');
   if (btnAdultoMinus) {
     btnAdultoMinus.addEventListener('click', function() {
@@ -358,7 +304,6 @@ function initHospedagens() {
     });
   }
 
-  // Adultos +
   var btnAdultoPlus = document.getElementById('adulto-plus');
   if (btnAdultoPlus) {
     btnAdultoPlus.addEventListener('click', function() {
@@ -372,7 +317,6 @@ function initHospedagens() {
     });
   }
 
-  // Crianças -
   var btnCriancaMinus = document.getElementById('crianca-minus');
   if (btnCriancaMinus) {
     btnCriancaMinus.addEventListener('click', function() {
@@ -385,7 +329,6 @@ function initHospedagens() {
     });
   }
 
-  // Crianças +
   var btnCriancaPlus = document.getElementById('crianca-plus');
   if (btnCriancaPlus) {
     btnCriancaPlus.addEventListener('click', function() {
@@ -399,7 +342,6 @@ function initHospedagens() {
     });
   }
 
-  // Botão Aplicar
   var guestsApply = document.getElementById('guests-apply');
   if (guestsApply) {
     guestsApply.addEventListener('click', function() {
@@ -409,9 +351,6 @@ function initHospedagens() {
   }
 }
 
-/**
- * Reservar hotel — salva dados no localStorage e vai para pagamento
- */
 function reservarHotel(id) {
   var hotel = null;
   for (var i = 0; i < hoteis.length; i++) {
@@ -437,10 +376,6 @@ function reservarHotel(id) {
   
   window.location.href = 'pagamento.html';
 }
-
-// ============================================================
-// VIAGENS (viagens.html)
-// ============================================================
 
 var pacotes = [
   { id: 1, title: 'Pacote 7 dias no Nordeste', price: 3490, location: 'Porto de Galinhas, PE' },
@@ -499,10 +434,6 @@ function comprarPacote(id) {
   window.location.href = 'pagamento.html';
 }
 
-// ============================================================
-// OFERTAS (ofertas.html)
-// ============================================================
-
 var ofertas = [
   { id: 1, name: 'Rio de Janeiro - Voo + Hotel (5 noites)', oldPrice: 2500, newPrice: 1750, discount: '30%' },
   { id: 2, name: 'Florianópolis - Feriado Prolongado', oldPrice: 2200, newPrice: 1100, discount: '50%' },
@@ -551,16 +482,11 @@ function aproveitarOferta(id) {
   window.location.href = 'pagamento.html';
 }
 
-// ============================================================
-// PAGAMENTO (pagamento.html)
-// ============================================================
-
 function initPagamento() {
   var summarySection = document.getElementById('summary-section');
   var form = document.getElementById('payment-form');
   if (!summarySection || !form) return;
 
-  // Helper de formatação de datas
   function formatarData(dataStr) {
     if (!dataStr) return '';
     var partes = dataStr.split('-');
@@ -569,7 +495,6 @@ function initPagamento() {
     return partes[2] + ' de ' + meses[parseInt(partes[1]) - 1] + '. de ' + partes[0];
   }
 
-  // Recuperar dados do localStorage
   var item = localStorage.getItem('viare_item') || 'Reserva Padrão';
   var locationItem = localStorage.getItem('viare_location') || 'Brasil';
   var price = parseFloat(localStorage.getItem('viare_price')) || 0;
@@ -579,22 +504,19 @@ function initPagamento() {
   var checkoutVal = localStorage.getItem('viare_checkout') || '2026-04-15';
 
   var isPacote = (type === 'Pacote' || type === 'Oferta');
-  
-  // Calcular diferença de dias
+
   var date1 = new Date(checkinVal + 'T00:00:00');
   var date2 = new Date(checkoutVal + 'T00:00:00');
   var timeDiff = Math.abs(date2.getTime() - date1.getTime());
   var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-  var nights = diffDays > 0 ? diffDays : 1; // Pelo menos 1 noite
+  var nights = diffDays > 0 ? diffDays : 1; 
 
   var taxa = 50;
   var subtotal = isPacote ? price : (price * nights);
   var total = isPacote ? price : (subtotal + taxa);
 
-  // Textos formatados
   var dataTexto = formatarData(checkinVal) + ' a ' + formatarData(checkoutVal);
 
-  // Renderizar resumo
   var summaryHtml = '';
 
   if (!isPacote) {
@@ -629,11 +551,9 @@ function initPagamento() {
 
   summarySection.innerHTML = summaryHtml;
 
-  // Formulário
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Verificar campos obrigatórios
     var inputs = form.querySelectorAll('input[required]');
     var temCampoVazio = false;
 
@@ -651,10 +571,8 @@ function initPagamento() {
 
     showToast('Compra Realizada! 🎉', 'Seu pagamento foi aprovado com sucesso.', 'success');
 
-    // Salvar reserva
     salvarReserva(item, price, type, locationItem, checkinVal, checkoutVal, nights);
 
-    // Limpar localStorage de pagamento
     localStorage.removeItem('viare_item');
     localStorage.removeItem('viare_location');
     localStorage.removeItem('viare_price');
@@ -668,13 +586,9 @@ function initPagamento() {
   });
 }
 
-/**
- * Salvar reserva no localStorage
- */
 function salvarReserva(item, price, type, locationItem, checkinVal, checkoutVal, nights) {
   var reservas = JSON.parse(localStorage.getItem('viare_reservas') || '[]');
-  
-  // Helper simples para "10 Abr 2026"
+
   function shortDate(dStr) {
     if(!dStr) return '';
     var p = dStr.split('-');
@@ -698,11 +612,6 @@ function salvarReserva(item, price, type, locationItem, checkinVal, checkoutVal,
   localStorage.setItem('viare_reservas', JSON.stringify(reservas));
 }
 
-// ============================================================
-// MINHAS RESERVAS (reservas.html)
-// ============================================================
-
-// Reservas padrão (que aparecem sempre)
 var reservasPadrao = [
   {
     id: 1,
@@ -741,7 +650,6 @@ function initReservas() {
   var countEl = document.getElementById('reservas-count');
   if (!container) return;
 
-  // Combinar reservas padrão + reservas do localStorage
   var reservasSalvas = JSON.parse(localStorage.getItem('viare_reservas') || '[]');
   var todasReservas = reservasPadrao.concat(reservasSalvas);
 
@@ -787,10 +695,6 @@ function initReservas() {
 
   container.innerHTML = html;
 }
-
-// ============================================================
-// INICIALIZAÇÃO
-// ============================================================
 
 document.addEventListener('DOMContentLoaded', function() {
   initProfileDropdown();
